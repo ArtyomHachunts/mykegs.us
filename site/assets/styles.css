@@ -83,7 +83,7 @@ button{border:0;cursor:pointer;font-family:Archivo,system-ui,sans-serif}
 .hero__text{color:var(--on-dark);font-size:19px;max-width:46ch;text-wrap:pretty}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chips li{font:500 14px Barlow,sans-serif;color:var(--on-dark-3);border:1px solid var(--line-dark-2);padding:7px 13px;border-radius:999px}
-.hero__media{flex:1 1 100%;height:clamp(150px,18vw,200px);background:#252321}
+.hero__media{flex:1 1 100%;min-width:0;height:clamp(150px,18vw,200px);background:#252321}
 
 .card-form{flex:1 1 380px;max-width:100%;align-self:flex-start;background:#fff;
   padding:clamp(24px,3vw,34px) clamp(20px,3vw,32px);border-top:5px solid var(--amber);
@@ -103,7 +103,9 @@ input::placeholder{color:#565149}
 input:focus{outline:none;border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 .error{color:#8A1C10;font:500 15px Barlow,sans-serif}
 input[aria-invalid="true"]{border-color:#8A1C10;box-shadow:inset 0 0 0 1px #8A1C10}
-.form__done{background:#F5F2EA;border-left:5px solid var(--amber);padding:22px 20px}
+.form__done{display:flex;flex-direction:column;gap:6px;background:#F5F2EA;border-left:5px solid var(--amber);padding:22px 20px}
+.form__done b{font:600 20px/1.3 Archivo,sans-serif}
+.form__done p{color:var(--body)}
 
 .pains{flex:2 1 440px}
 .pains li{display:flex;align-items:baseline;gap:20px;padding:17px 0;border-bottom:1px solid var(--line);font:500 18px/1.4 Barlow,sans-serif}
@@ -138,8 +140,9 @@ input[aria-invalid="true"]{border-color:#8A1C10;box-shadow:inset 0 0 0 1px #8A1C
 .quotes__by b{display:block;font:600 16px Archivo,sans-serif;color:#fff}
 .quotes__note{margin-top:32px;color:var(--on-dark-2);font-size:15px;max-width:70ch}
 
-.compare{position:relative;height:clamp(280px,42vw,560px);background:var(--ink);overflow:hidden;touch-action:pan-y}
+.compare{position:relative;height:clamp(280px,42vw,560px);background:var(--ink);overflow:hidden;touch-action:pan-y;container-type:inline-size}
 .compare__before{position:absolute;inset:0;width:46%;overflow:hidden}
+.compare__before img{position:absolute;top:0;left:0;width:100cqw;max-width:none}
 .compare__slot{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;
   background:repeating-linear-gradient(45deg,#26241f 0 10px,#2e2b26 10px 20px);
   font:500 15px/1.55 Barlow,sans-serif;letter-spacing:.06em;color:var(--on-dark-2);text-align:center}

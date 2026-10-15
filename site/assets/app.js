@@ -46,6 +46,21 @@
     });
   });
 
+  /* ---------- Quote forms: thank-you state until a back end exists ---------- */
+  document.querySelectorAll("form.form").forEach(function (form) {
+    if (form.getAttribute("action") !== "#") return;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var done = document.createElement("div");
+      done.className = "form__done";
+      done.tabIndex = -1;
+      done.innerHTML = "<b>Thanks — we've got your request.</b>" +
+        "<p>We'll get back to you with a quote, usually the same business day.</p>";
+      form.parentNode.replaceChild(done, form);
+      done.focus();
+    });
+  });
+
   /* ---------- Before / after comparison ---------- */
   var compare = document.querySelector("[data-compare]");
   if (!compare) return;
@@ -70,6 +85,15 @@
     var v = Math.round(pos);
     knob.setAttribute("aria-valuenow", String(v));
     knob.setAttribute("aria-valuetext", v + "% before, " + (100 - v) + "% after");
+  }
+
+  // BEFORE photo sits on top of the "YOUR PHOTO" slot; no data-before keeps the slot visible.
+  function showBefore(src, title) {
+    var img = before.querySelector("img");
+    if (!src) { if (img) before.removeChild(img); return; }
+    if (!img) { img = document.createElement("img"); before.appendChild(img); }
+    img.src = src;
+    img.alt = title + " — the keg as it arrived";
   }
 
   function fromEvent(e) {
@@ -110,6 +134,7 @@
       var title = thumb.getAttribute("data-title");
       afterImg.src = thumb.getAttribute("data-after");
       afterImg.alt = title + " \u2014 the keg after refurbishment";
+      showBefore(thumb.getAttribute("data-before"), title);
       titleEl.textContent = title;
       noteEl.textContent = thumb.getAttribute("data-note");
       knob.setAttribute("aria-label", "Before and after comparison: " + title);
